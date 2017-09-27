@@ -1,0 +1,8 @@
+.navbar-default {
+    background-color: white;
+    height: 56px !important;
+}
+
+#inputBuscar{
+    padding-right: 0;
+}
