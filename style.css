@@ -6,3 +6,21 @@
 #inputBuscar{
     padding-right: 0;
 }
+
+nav .col-md-2{
+    margin-left: 0;
+    padding: 0;
+}
+
+nav .col-md-8{
+    padding-right: 0;
+}
+
+nav .col-md-10{
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+.navbar-header{
+    margin-left: 20px !important;
+}
