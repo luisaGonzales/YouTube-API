@@ -80,9 +80,11 @@ class App {
                   console.log("lis: ", list);
                   $("#root").append(list);
             });
-      }
-     
+      }   
 }
 
 let app = new App();
-$(document).ready(app.init());
+$(document).ready(()=>{
+      app.init();
+      $('[data-toggle="tooltip"]').tooltip();   
+});
