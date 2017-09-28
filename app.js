@@ -7,7 +7,7 @@ class App {
             this.videos = [];
             this.selectedVideo = null;
             this.imagenes = undefined;
-            this.searchTerm = "Fito & Fitipaldis - Entre la espada y la pared";
+            this.searchTerm = "Nombe -Wait";
             this.inputBuscar = $("#inputBuscar");
             this.btnBuscar = $("#btnBuscar");
             this.reproducir = $("#playVideo");
@@ -16,6 +16,9 @@ class App {
       }
       init() {
             this.youtubeSearch(this.searchTerm);
+            this.setup();
+      }
+      setup() {
             this.inputBuscar.keyup((e) => {
                   if (e.which == 13) {
                         this.btnBuscar.click();
@@ -30,36 +33,39 @@ class App {
       getVideoList(videos) {
             return videos.map((video, index) => {
                   const imageUrl = video.snippet.thumbnails.medium.url;
-                  return `<li> 
+                  return (`<li> 
                               <p>
                                     <img class="media-object" src=${imageUrl} id="${video.id.videoId}"/>  
                                     <p>${video.snippet.title}</p>
                               </p>
-                        </li>`;
+                        </li>`);
             });
       }
-      youtubeSearch(searchTerm) {
-            console.log(searchTerm);
-            YTSearch({
-                        key: API_KEY,
-                        term: searchTerm
-                  },
-                  data => {
-                        this.videos = data;
-                        this.selectedVideo = data[0];
-                        this.searchTerm = searchTerm;
-                        let list = this.getVideoList(this.videos);
-                        console.log("lis: ", list);
-                        this.lista.append(list);
-                        let videoSeleccionado = this.videoSeleccionado(this.selectedVideo);
-                        this.reproducir.append(videoSeleccionado);
-                        this.imagenes = $("img");
-                        this.imagenes.click((e) => {
-                              this.lista.empty()
-                              this.youtubeSearch(e.target.id);
-                              console.log(e.target.id);
-                        });
-                  });
+      youtubeSearch(searchTerm) 
+      {
+          YTSearch({ key: API_KEY, term: searchTerm }, data => 
+          {
+              this.videos = data;
+              this.selectedVideo = data[0];
+              this.searchTerm = searchTerm;
+              let list = this.getVideoList(this.videos);
+              this.lista.append(list);
+              let videoSeleccionado = this.videoSeleccionado(this.selectedVideo);
+              this.reproducir.append(videoSeleccionado);
+              this.imagenes = $("img");
+              this.imagenes.click((e) => {
+                  this.lista.empty();
+                  this.youtubeSearch(e.target.id);
+              });
+          });
+      }
+      videoSeleccionado(video) {
+            const url = `https://www.youtube.com/embed/${video.id.videoId}`;
+            this.informacion.html(
+                  `<h2>${video.snippet.title}</h2>
+                  <h3>${video.snippet.description}</h3>`
+            );
+            return `<iframe class="embed-responsive-item" src=${url}></iframe>`;
       }
       videoSearch(searchTerm) {
             jQuery.getJSON("list.json", data => {
@@ -72,14 +78,7 @@ class App {
                   $("#root").append(list);
             });
       }
-      videoSeleccionado(video) {
-            const url = `https://www.youtube.com/embed/${video.id.videoId}`;
-            this.informacion.html(
-                  `<h2>${video.snippet.title}</h2>
-                  <h3>${video.snippet.description}</h3>`
-            );
-            return `<iframe class="embed-responsive-item" src=${url}></iframe>`;
-      }
+     
 }
 
 let app = new App();
