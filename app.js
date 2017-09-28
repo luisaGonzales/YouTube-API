@@ -29,12 +29,11 @@ class App {
       }
       getVideoList(videos) {
             return videos.map((video, index) => {
-                  const imageUrl = video.snippet.thumbnails.default.url;
-                  
+                  const imageUrl = video.snippet.thumbnails.medium.url;
                   return `<li> 
-                              <img class="media-object" src=${imageUrl} id="${video.id.videoId}"/> 
-                              <p> 
-                                 <label>${video.snippet.title}</label>
+                              <p>
+                                    <img class="media-object" src=${imageUrl} id="${video.id.videoId}"/>  
+                                    <p>${video.snippet.title}</p>
                               </p>
                         </li>`;
             });
@@ -53,11 +52,12 @@ class App {
                         console.log("lis: ", list);
                         this.lista.append(list);
                         let videoSeleccionado = this.videoSeleccionado(this.selectedVideo);
+                        this.reproducir.append(videoSeleccionado);
                         this.imagenes = $("img");
                         this.imagenes.click((e) => {
-                            this.lista.empty()
-                            this.youtubeSearch(e.target.id);
-                            console.log(e.target.id);
+                              this.lista.empty()
+                              this.youtubeSearch(e.target.id);
+                              console.log(e.target.id);
                         });
                   });
       }
@@ -72,7 +72,7 @@ class App {
                   $("#root").append(list);
             });
       }
-      videoSeleccionado(video){
+      videoSeleccionado(video) {
             const url = `https://www.youtube.com/embed/${video.id.videoId}`;
             this.informacion.html(
                   `<h2>${video.snippet.title}</h2>
