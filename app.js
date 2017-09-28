@@ -36,7 +36,8 @@ class App {
                   return (`<li> 
                               <p>
                                     <img class="media-object" src=${imageUrl} id="${video.id.videoId}"/>  
-                                    <p>${video.snippet.title}</p>
+                                    <p class="titulo">${video.snippet.title}</p>
+                                    <hr/>
                               </p>
                         </li>`);
             });
@@ -53,6 +54,7 @@ class App {
               let videoSeleccionado = this.videoSeleccionado(this.selectedVideo);
               this.reproducir.append(videoSeleccionado);
               this.imagenes = $("img");
+              console.log(this.imagenes);
               this.imagenes.click((e) => {
                   this.lista.empty();
                   this.youtubeSearch(e.target.id);
@@ -62,8 +64,9 @@ class App {
       videoSeleccionado(video) {
             const url = `https://www.youtube.com/embed/${video.id.videoId}`;
             this.informacion.html(
-                  `<h2>${video.snippet.title}</h2>
-                  <h3>${video.snippet.description}</h3>`
+                  `<h2 class="title">${video.snippet.title}</h2>
+                  <hr/>
+                  <h3 class="description">${video.snippet.description}</h3>`
             );
             return `<iframe class="embed-responsive-item" src=${url}></iframe>`;
       }

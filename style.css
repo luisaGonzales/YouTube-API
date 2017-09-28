@@ -1,6 +1,7 @@
 .navbar-default {
     background-color: white;
     height: 56px !important;
+    box-shadow: 1px 1px 4px rgba(153, 153, 153, 0.95);
 }
 
 #inputBuscar{
@@ -18,7 +19,6 @@ nav .col-md-8{
 
 nav .col-md-10{
     margin-top: 2vh;
-    margin-left: 8%;
 }
 
 .navbar-header{
@@ -26,5 +26,63 @@ nav .col-md-10{
 }
 
 #youtube{
-    margin-top: 80px;
+    margin-top: 90px;
+}
+
+.btn {
+    padding: 6px 26px !important;
+    border-radius: 2px;
+    background-color: #F1EEEE;
+}
+
+.btn:hover{
+    background-color: #f0f0f0;
+    color: #626262;
+}
+
+.form-control{
+    border-radius: 2px;
+}
+
+ol
+{
+    list-style: none;
+}
+
+li{
+    margin-bottom: 9%;
+    cursor: pointer;
+}
+
+#root{
+    box-shadow: 1px 1px 1px 1px rgba(153, 153, 153, 0.95);
+    padding: 2%;
+    padding-left: 6%;
+    padding-top: 6%;
+}
+.titulo{
+    font-weight: 700;
+    margin: 0;
+    text-transform: capitalize;
+    text-align: left;
+}
+
+.title{
+    text-transform: capitalize;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+.description{
+    text-transform: capitalize;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+#avatar{
+    position: absolute;
+    top: 2px;
+    left: 92%;
+    cursor: pointer;
 }
